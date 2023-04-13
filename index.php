@@ -33,7 +33,8 @@ $statement2->execute();
     <!-- Remember that alternative syntax is good and html inside php is bad -->
     <div id="mainContainer">
     <header>
-        <h3><a href="authenticate.php">Login</a></h3>
+        <h3><a href="userlogin.php">User Login</a></h3>
+
         
         <nav id="homemenu">
         <?php while ($row= $statement->fetch()): ?>

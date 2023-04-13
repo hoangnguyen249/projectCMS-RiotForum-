@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
  
 <body>
-    <form action="authenticate.php" method="post">
+    <form action="userlogin.php" method="post">
         <div class="login-box">
             <h1>Login</h1>
  
@@ -68,9 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      name="login" value="Sign In">
         </div>
     </form>
-    <footer>
-        <p><a href="non-userpage.php">Guest</a></p>
-</footer>
 </body>
  
 </html>

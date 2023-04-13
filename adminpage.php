@@ -35,6 +35,7 @@ $statement2->execute();
     <header>
         <nav id="command">
             <ul>
+            <h3><a href="adminlogin.php">Admin Login</a></h3>
                 <a href="post.php">New Post</a>
                 <a href="allpost.php">All Post List</a>
                 <a href="index.php">Log Out</a>
