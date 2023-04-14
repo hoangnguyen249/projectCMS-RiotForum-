@@ -4,7 +4,7 @@
 require('connect.php');
 
 // Query Database
-$query = "SELECT * FROM Post ORDER BY post_id";
+$query = "SELECT * FROM Post ORDER BY post_id LIMIT 10";
 
 $statement = $db->prepare($query);
 
@@ -39,11 +39,13 @@ $statement2->execute();
             <h3><a href="logout.php">Log Out</a></h3>
                 <a href="post.php">New Post</a>
                 <a href="allpost.php">All Post List</a>
-                <a href="index.php">Log Out</a>
                 <a href="category.php">Category</a>                    
             </ul>      
         </nav>
-        <nav id="homemenu">
+       
+            
+    </header>
+    <nav id="homemenu">
         <?php while ($row= $statement->fetch()): ?>
             <ul>
 
@@ -52,8 +54,6 @@ $statement2->execute();
             </ul>  
         <?php endwhile ?>    
         </nav>
-            
-    </header>
     <div id=post>
         
         <?php while ($row= $statement2->fetch()): ?>

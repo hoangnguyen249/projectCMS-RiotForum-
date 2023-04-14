@@ -65,6 +65,16 @@ $query = "SELECT * FROM adminlogin ";
     <title>My Blog Post!</title>
 </head>
 <body>
+<header>
+        <nav id="command">
+            <ul>
+            <h3><a href="adminpage.php">Back to Home Page</a></h3>
+                            
+            </ul>      
+        </nav>
+       
+            
+    </header>
 
     <form action="userCRUD.php" method="post">
 

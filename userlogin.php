@@ -1,6 +1,42 @@
 <?php
+require('connect.php');
 
+function test_input($data) {
+	
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	
+	$username = test_input($_POST['username']);
+	$password = test_input($_POST['password']);
+	$stmt = $db->prepare("SELECT * FROM adminlogin");
+	$stmt->execute();
+	$users = $stmt->fetchAll();
+	$fail=false;
+	foreach($users as $user) {
+		
+	    if(($user['username'] == $username) &&
+			($user['password'] == $password)) {
+                session_start();
+                $_SESSION['username']= $username;
+                header("Location: welcome.php");
+				
+		}
+        else{
+            $fail=true;
+        }
+	}
+    if($fail){
+        echo "<script language='javascript'>";
+        echo "alert('WRONG INFORMATION, PLEASE TRY AGAIN')";
+        echo "</script>";
+    }
+   
+}
 
 ?>
 
@@ -18,7 +54,7 @@
 </head>
  
 <body>
-    <form action="session.php" method="post">
+    <form action="userlogin.php" method="post">
         <div class="login-box">
             <h1>Login</h1>
  
