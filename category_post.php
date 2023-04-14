@@ -1,8 +1,7 @@
 <?php
 
 
-
-bhhh
+session_start();
 
 require('connect.php');
 $query = "SELECT * FROM Post ORDER BY post_id ASC";
@@ -56,7 +55,12 @@ if(isset($_POST['submit'])){
 </head>
 <body>
     <!-- Remember that alternative syntax is good and html inside php is bad -->
+    <?php if(isset($_SESSION['username'])): ?>
 <p><a href= "adminpage.php">Go back to home page</a></p>
+<?php else: ?>
+    <p><a href= "index.php">Go back to home page</a></p>
+<?php endif ?>
+
 
         <div id=post>
         
