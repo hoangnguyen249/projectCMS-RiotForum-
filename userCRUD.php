@@ -30,12 +30,11 @@ $query = "SELECT * FROM adminlogin ";
 
 	}
 	if(isset($_POST['update_user'])){
-		$username = filter_input(INPUT_POST, 'update_user', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		$username = filter_input(INPUT_POST, 'update_username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 		$password = filter_input(INPUT_POST, 'update_password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 		$id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 		$statement = $db->prepare("UPDATE adminlogin SET username= :username, password= :password WHERE id = :id ");
-		$statement = $db->prepare($query);
 		$statement->bindValue(':username', $username);
 		$statement->bindValue(':password', $password);
 		$statement->bindValue(':id', $id);
@@ -85,7 +84,7 @@ $query = "SELECT * FROM adminlogin ";
 		<?php if(isset($result)): ?>
 		<input type="hidden" name="user_id" value="<?php echo $result['id'] ?>">
 		<label for="update_user">Update User</label>
-        <input type="text" name="update_user" value=<?= $result['username']?>>
+        <input type="text" name="update_username" value=<?= $result['username']?>>
 		<input type="text" name="update_password" value=<?= $result['password']?>>
 		
 		<?php endif ?>

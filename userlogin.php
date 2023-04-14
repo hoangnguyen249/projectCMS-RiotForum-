@@ -1,36 +1,6 @@
 <?php
 
-require('connect.php');
 
-function test_input($data) {
-	
-	$data = trim($data);
-	$data = stripslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	
-	$username = test_input($_POST['username']);
-	$password = test_input($_POST['password']);
-	$stmt = $db->prepare("SELECT * FROM adminlogin");
-	$stmt->execute();
-	$users = $stmt->fetchAll();
-	
-	foreach($users as $user) {
-		
-		if(($user['username'] == $username) &&
-			($user['password'] == $password)) {
-				header("location: adminpage.php");
-		}
-	}
-    echo "<script language='javascript'>";
-    echo "alert('WRONG INFORMATION')";
-    echo "</script>";
-   
-
-}
 
 ?>
 
@@ -48,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
  
 <body>
-    <form action="userlogin.php" method="post">
+    <form action="session.php" method="post">
         <div class="login-box">
             <h1>Login</h1>
  
