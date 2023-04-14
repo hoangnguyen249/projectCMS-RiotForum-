@@ -39,7 +39,8 @@ $statement2->execute();
             <h3><a href="logout.php">Log Out</a></h3>
                 <a href="post.php">New Post</a>
                 <a href="allpost.php">All Post List</a>
-                <a href="category.php">Category</a>                    
+                <a href="category.php">Category</a>
+                <a href="category_post.php">Search page by Category</a>                       
             </ul>      
         </nav>
        

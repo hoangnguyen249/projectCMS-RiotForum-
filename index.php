@@ -34,6 +34,7 @@ $statement2->execute();
     <div id="mainContainer">
     <header>
         <h3><a href="userlogin.php">User Login</a></h3>
+        <a href="category_post.php">Search page by Category</a>
 
         
         <nav id="homemenu">
