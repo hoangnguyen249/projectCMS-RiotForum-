@@ -31,6 +31,23 @@ $query = "SELECT * FROM adminlogin ";
    		}
 
 	}
+	if(isset($_POST['pick'])){
+		
+		$query="SELECT * FROM adminlogin WHERE id = :id";
+		$statement = $db->prepare($query);
+		
+    	$statement->bindValue(':id', $_POST['user']);
+		$statement->execute();
+		$result = $statement->fetch(PDO::FETCH_ASSOC);
+
+	}
+	if(isset($_POST['update_user'])){
+		$statement = $db->prepare("UPDATE Post SET username= :username, password= :password ");
+		$statement = $db->prepare($query);
+		$statement->bindValue(':username', $_POST['update_user']);
+		$statement->bindValue(':password', $_POST['update_password']);
+		$statement->execute();
+	}
 
 
 ?>
@@ -45,7 +62,7 @@ $query = "SELECT * FROM adminlogin ";
     <title>My Blog Post!</title>
 </head>
 <body>
-    <!-- loading the categories--->
+
     <form action="userCRUD.php" method="post">
 
     <label for="loaded_category">Category</label>
@@ -56,23 +73,28 @@ $query = "SELECT * FROM adminlogin ";
     <?php endforeach ?>
 
     </select>
-   
 
-    <label for="rename">Rename</label>
-    <input type="text" name="rename">
-
-    <input type="submit" value="Rename Category" name="rename_category">
+    <input type="submit" value="Pick Category" name="pick">
     </form>
 
+	<form action="userCRUD.php" method="post">
+		<?php if(isset($result)): ?>
+		<label for="update_user">Update User</label>
+        <input type="text" name="update_user" value=<?= $result['username']?>>
+		<input type="text" name="update_password" value=<?= $result['password']?>>
+		<input type="submit" value="Update User" name="update_user">
+		<?php endif ?>
 
-    <!-- adding new categories--->
+	</form>
+
+
+   
     <form action="userCRUD.php" method="post">
         <label for="new_user">Add New User</label>
         <input type="text" name="new_user">
 		<input type="text" name="new_password">
 
         <input type="submit" value="Add User" name="add_user">
-		<input type="submit" value="Update User" name="add_user">
         
     </form>
 </body>
