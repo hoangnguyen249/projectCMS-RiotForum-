@@ -11,7 +11,7 @@ if(isset($_POST['submit'])) {
     $content = filter_input(INPUT_POST,'content',FILTER_SANITIZE_SPECIAL_CHARS);
     $champion = filter_input(INPUT_POST,'champion',FILTER_SANITIZE_SPECIAL_CHARS);
     $category = filter_input(INPUT_POST,'category',FILTER_SANITIZE_SPECIAL_CHARS);
-    $id = filter_input(INPUT_POST,'post_id',FILTER_SANITIZE_SPECIAL_CHARS);
+    $id = filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT);
     $statement = $db->prepare("UPDATE Post SET title = :title, content = :content, champion = :champion, updated_date= :updated_date, category= :category WHERE post_id = :id");
 
     // Bind the values from the form to the query

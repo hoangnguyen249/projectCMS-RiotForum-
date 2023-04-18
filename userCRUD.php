@@ -32,7 +32,7 @@ $query = "SELECT * FROM adminlogin ";
 	if(isset($_POST['update_user'])){
 		$username = filter_input(INPUT_POST, 'update_username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 		$password = filter_input(INPUT_POST, 'update_password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-		$id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		$id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
 
 		$statement = $db->prepare("UPDATE adminlogin SET username= :username, password= :password WHERE id = :id ");
 		$statement->bindValue(':username', $username);
@@ -44,8 +44,8 @@ $query = "SELECT * FROM adminlogin ";
 		
 		$query="SELECT * FROM adminlogin WHERE id = :id";
 		$statement = $db->prepare($query);
-		
-    	$statement->bindValue(':id', $_POST['user']);
+		$id = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_NUMBER_INT);
+    	$statement->bindValue(':id', $id);
 		$statement->execute();
 		$result = $statement->fetch(PDO::FETCH_ASSOC);
 
